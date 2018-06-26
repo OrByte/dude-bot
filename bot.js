@@ -27,14 +27,23 @@ var commands = {
     },
 	"инвайт": {
 		process: function (msg, suffix) {
-			msg.channel.send(":tickets:  |  https://discordapp.com/api/oauth2/authorize?client_id=461083165252124672&permissions=8&scope=bot");
+			msg.channel.send(
+			"embed = discord.Embed(title = "Информация о {}".format(user.name), color = 0xf1c40f)
+    embed.add_field(name = "ID", value = user.id, inline = True)
+    embed.add_field(name = "Статус", value = user.status, inline = True)
+    embed.add_field(name = "Сейчас в", value = user.game, inline = True)
+    embed.add_field(name = "Наивысшая роль", value = user.top_role)
+    embed.add_field(name = "Прибыл на сервер", value = user.joined_at)
+    embed.set_thumbnail(url = user.avatar_url)
+    embed.set_footer(text = "Rayvich © 2018", icon_url = "https://images-ext-1.discordapp.net/external/yCkXzRR5Q13S2ybfLR9Mcz_wfNOQ0O9JZoOpKzd16Cg/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/279632382582325248/4fc014b5daa59135580ff7e58f93c7e6.webp")"
+			);
 		}
 	}
 };
 
 client.on("ready", function () {
 	console.log("Logged in " + client.guilds.array().length + " servers");
-	client.user.setGame(cfg.prefix + "хелп | МАЙ НЕЙМ ИЗ ЧУУУВАК "); /* help */
+	client.user.setGame(cfg.prefix + "хелп | Привет я чувак");
 });
 
 client.on('message', function (msg) {
@@ -49,7 +58,7 @@ client.on('message', function (msg) {
 			if (cmdTxt === ''){
 				var cmdTxt = "none";
 			}
-            msg.channel.send(":warning:  |  **Неизвестная команда!** `" + cmdTxt + "` **Вы можете использовать** `" + cfg.prefix + "хелп" + "` **для просмотра всех функции ПАЧИМАРИКА!!!** `");
+            msg.channel.send(":warning:  |  **Неизвестная команда!** `" + cmdTxt + "` **Вы можете использовать** `" + cfg.prefix + "хелп" + "` **чтобы узнать что я умею** `");
         }
     }
 });
