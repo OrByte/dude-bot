@@ -29,7 +29,7 @@ var commands = {
 		process: function (msg, suffix) {
 			msg.channel.send({embed: {
 				color: 3447003,
-				description: "A very simple Embed!"
+				description: ":tickets:"
 			}});
 		}
 	}
