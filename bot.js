@@ -27,9 +27,10 @@ var commands = {
     },
 	"инвайт": {
 		process: function (msg, suffix) {
-			msg.channel.send(
-			":tickets:  |  https://discordapp.com/api/oauth2/authorize?client_id=461083165252124672&permissions=8&scope=bot"
-			);
+			msg.channel.send({embed: {
+				color: 3447003,
+				description: "A very simple Embed!"
+			}});
 		}
 	}
 };
