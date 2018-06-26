@@ -12,12 +12,9 @@ var commands = {
                 ":page_facing_up:  |  **Доступные команды:**",
 				"```perl",
                 "!хелп #Показывает доступные команды",
-                "!войти #Заходит на доступный голосовой канал",
-				"!стоп #Выходить из голосового канала/вырубает шансон (и не только)",
-				"!радио <имя_станции> #Включает радио",
-				"!список #Показывает список доступных радиостанции",
+                "!инвайт #Делится ссылкой для приглашения",
 				"~~~Также забавные фукнции...~~~",
-				"!ривер | ",
+				"!чзб | ава.жпег | ",
 				"```",
 				"",
 				"Привет, я Пачик) Я готов к вашим услугам. Но если вы обидете меня, я вас нахуй убью :3"
@@ -29,15 +26,66 @@ var commands = {
 		process: function (msg, suffix) {
 			msg.channel.send({embed: {
 				color: 3447003,
-				description: ":tickets:"
+				fields: [{
+					name: "Ссылка на инвайт",
+					value: "https://goo.gl/pNcAmj"
+				}
+				],
+				timestamp: new Date(),
+				footer: {
+					icon_url: client.user.avatarURL,
+					text: "© 'dude-bot' by rayvich"
+				}
+			}});
+		}
+	},
+	"чзб": {
+		process: function (msg, suffix) {
+			msg.channel.send({embed: {
+				color: 2687053,
+				title: "**Кто создал меня???**",
+				description: "*Меня создал Оркен (RAYVICH) Абдрахманов*",
+				fields: [
+				{
+					name: "**VK**",
+					value:"[**CLICK**](https://vk.com/rayvy)"
+				},
+				{
+					name: "**YOUTUBE**",
+					value:"[**CLICK**](https://www.youtube.com/channel/UCIHLgqkFLqo8E08yMBfD-rQ?view_as=subscriber)"
+				},
+				{
+					name: "**TWITCH**",
+					value:"[**CLICK**](https://www.twitch.tv/rayvich)"
+				},
+				],
+				timestamp: new Date(),
+				footer: {
+					icon_url: client.user.avatarURL,
+					text: "© 'dude-bot' by rayvich"
+				}
 			}});
 		}
 	}
 };
-
+/* Zabavniy FUNCTIONS or not working FUNCTIONS */
+client.on('message', message => {
+  if (message.content === 'ава.жпег') {
+	  msg.channel.send("ты че аву свою не помнишь?")
+		.then(message.reply(message.author.avatarURL))
+		.catch(console.error);
+  }
+});
+/*endl*/
 client.on("ready", function () {
 	console.log("Logged in " + client.guilds.array().length + " servers");
 	client.user.setGame(cfg.prefix + "хелп | Привет я чувак");
+});
+
+client.on('guildMemberAdd', member => {
+  const channel = member.guild.channels.find('name', 'member-log');
+  if (!channel) return;
+  channel.send(`Welcome to the server, ${member}`);
 });
 
 client.on('message', function (msg) {
